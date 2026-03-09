@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="AdapterPattern/AdapterPattern.csproj" Id="8af80396-55a7-4384-ae90-962cf525ba9c" />
+  <Project Path="FacadePattern/FacadePattern.csproj" />
+</Solution>
