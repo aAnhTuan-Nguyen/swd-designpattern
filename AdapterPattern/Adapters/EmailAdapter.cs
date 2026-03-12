@@ -4,8 +4,8 @@ using AdapterPattern.Target;
 namespace AdapterPattern.Adapters;
 
 /// <summary>
-/// ADAPTER 1 — Bọc EmailService vào INotificationSender.
-/// Dịch lệnh Send(recipient, message) → SendEmail(toAddress, subject, body).
+/// ADAPTER 1 — Wraps EmailService into INotificationSender.
+/// Translates Send(recipient, message) → SendEmail(toAddress, subject, body).
 /// </summary>
 public class EmailAdapter : INotificationSender
 {
@@ -18,10 +18,10 @@ public class EmailAdapter : INotificationSender
 
     public void Send(string recipient, string message)
     {
-        // Chuyển đổi: interface chuẩn → API của EmailService
+        // Convert: standard interface → EmailService API
         _emailService.SendEmail(
             toAddress: recipient,
-            subject: "Thông báo hệ thống",
+            subject: "System Notification",
             body: message
         );
     }

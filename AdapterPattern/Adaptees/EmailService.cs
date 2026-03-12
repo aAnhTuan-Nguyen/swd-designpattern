@@ -1,16 +1,16 @@
 namespace AdapterPattern.Adaptees;
 
 /// <summary>
-/// ADAPTEE 1 — Class cũ xử lý email.
-/// Có interface KHÁC với INotificationSender: nhận 3 tham số riêng biệt.
-/// Không thể thay đổi class này (thư viện bên ngoài / legacy code).
+/// ADAPTEE 1 — Legacy class that handles email.
+/// It has a different interface than INotificationSender: accepts 3 separate parameters.
+/// Assume this class cannot be changed (external library / legacy code).
 /// </summary>
 public class EmailService
 {
     public void SendEmail(string toAddress, string subject, string body)
     {
-        Console.WriteLine($"📧 [EmailService] Gửi email đến : {toAddress}");
-        Console.WriteLine($"                 Tiêu đề       : {subject}");
-        Console.WriteLine($"                 Nội dung       : {body}");
+        Console.WriteLine($"📧 [EmailService] Sending email to : {toAddress}");
+        Console.WriteLine($"                 Subject        : {subject}");
+        Console.WriteLine($"                 Body           : {body}");
     }
 }

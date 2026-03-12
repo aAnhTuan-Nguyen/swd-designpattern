@@ -22,12 +22,12 @@ public class HomeTheaterFacade
     }
 
     /// <summary>
-    /// Một lệnh duy nhất để bắt đầu xem phim.
-    /// Bên trong, Facade điều phối tất cả các hệ thống con.
+    /// A single command to start watching a movie.
+    /// Internally the Facade coordinates all subsystems.
     /// </summary>
     public void WatchMovie(string movie)
     {
-        Console.WriteLine($"\n🎥 === BẮT ĐẦU XEM PHIM: \"{movie}\" ===\n");
+        Console.WriteLine($"\n🎥 === START WATCHING MOVIE: \"{movie}\" ===\n");
 
         _lights.Dim(10);
         _tv.TurnOn();
@@ -39,15 +39,16 @@ public class HomeTheaterFacade
         _player.TurnOn();
         _player.Play(movie);
 
-        Console.WriteLine("\n🍿 Chúc bạn xem phim vui vẻ!\n");
+        Console.WriteLine("\n🍿 Enjoy the movie!\n");
     }
 
     /// <summary>
-    /// Một lệnh duy nhất để kết thúc xem phim.
+    /// <summary>
+    /// A single command to end watching a movie.
     /// </summary>
     public void EndMovie()
     {
-        Console.WriteLine("\n🎥 === KẾT THÚC XEM PHIM ===\n");
+        Console.WriteLine("\n🎥 === END WATCHING MOVIE ===\n");
 
         _player.Stop();
         _player.TurnOff();
@@ -55,6 +56,6 @@ public class HomeTheaterFacade
         _tv.TurnOff();
         _lights.TurnOn();
 
-        Console.WriteLine("\n✅ Tất cả thiết bị đã được tắt. Đèn phòng đã bật lại.\n");
+        Console.WriteLine("\n✅ All devices have been turned off. Room lights are back on.\n");
     }
 }

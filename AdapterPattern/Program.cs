@@ -11,48 +11,48 @@ internal class Program
         Console.OutputEncoding = System.Text.Encoding.UTF8;
 
         // ╔════════════════════════════════════════════════════╗
-        // ║      PHẦN 1: KHÔNG SỬ DỤNG ADAPTER PATTERN       ║
+        // ║      PART 1: WITHOUT USING ADAPTER PATTERN         ║
         // ╚════════════════════════════════════════════════════╝
         Console.WriteLine("╔════════════════════════════════════════════════════╗");
-        Console.WriteLine("║      KHÔNG SỬ DỤNG ADAPTER PATTERN               ║");
+        Console.WriteLine("║      WITHOUT USING ADAPTER PATTERN                 ║");
         Console.WriteLine("╚════════════════════════════════════════════════════╝");
         Console.WriteLine();
-        Console.WriteLine("Client phải gọi trực tiếp từng service theo API riêng của nó:\n");
+        Console.WriteLine("The client must call each service directly using their specific APIs:\n");
 
         var emailService = new EmailService();
         var smsService = new SmsService();
 
-        Console.WriteLine("--- Gửi thông báo đơn hàng #1001 ---\n");
+        Console.WriteLine("--- Sending order notification #1001 ---\n");
 
-        // Gửi email — phải biết đúng tên method và số tham số của EmailService
-        emailService.SendEmail("khach@gmail.com", "Thông báo hệ thống", "Đơn hàng #1001 đã được xác nhận.");
+        // Send email — client must know the exact method name and parameters of EmailService
+        emailService.SendEmail("khach@gmail.com", "System Notification", "Order #1001 has been confirmed.");
         Console.WriteLine();
 
-        // Gửi SMS — phải biết đúng tên method và số tham số của SmsService
-        smsService.SendTextMessage("0901234567", "Đơn hàng #1001 đã được xác nhận.");
+        // Send SMS — client must know the exact method name and parameters of SmsService
+        smsService.SendTextMessage("0901234567", "Order #1001 has been confirmed.");
 
         Console.WriteLine();
-        Console.WriteLine("⚠️  Vấn đề:");
-        Console.WriteLine("    - Client bị phụ thuộc trực tiếp vào EmailService và SmsService.");
-        Console.WriteLine("    - Không thể xử lý chung trong vòng lặp hay danh sách.");
-        Console.WriteLine("    - Muốn thêm kênh mới (Zalo...) phải sửa toàn bộ code client.");
+        Console.WriteLine("⚠️  Problems:");
+        Console.WriteLine("    - The client is tightly coupled to EmailService and SmsService.");
+        Console.WriteLine("    - Cannot process multiple channels generically in a loop or collection.");
+        Console.WriteLine("    - Adding a new channel (e.g. Zalo) requires modifying the client code.");
 
         Console.WriteLine("\n");
 
         // ╔════════════════════════════════════════════════════╗
-        // ║      PHẦN 2: SỬ DỤNG ADAPTER PATTERN             ║
+        // ║      PART 2: USING ADAPTER PATTERN                 ║
         // ╚════════════════════════════════════════════════════╝
         Console.WriteLine("╔════════════════════════════════════════════════════╗");
-        Console.WriteLine("║      SỬ DỤNG ADAPTER PATTERN                     ║");
+        Console.WriteLine("║      USING ADAPTER PATTERN                         ║");
         Console.WriteLine("╚════════════════════════════════════════════════════╝");
         Console.WriteLine();
-        Console.WriteLine("Client chỉ cần biết INotificationSender — không quan tâm loại service:\n");
+        Console.WriteLine("The client only needs to know about INotificationSender — it does not care about the concrete service type:\n");
 
-        // Adapter bọc các service cũ vào interface chuẩn
+        // Adapters wrap legacy services into the standard interface
         INotificationSender emailSender = new EmailAdapter(new EmailService());
         INotificationSender smsSender   = new SmsAdapter(new SmsService());
 
-        // Client làm việc với danh sách interface — đa hình hoàn toàn
+        // The client works with a list of interfaces — full polymorphism
         var channels = new List<(INotificationSender sender, string recipient)>
         {
             (emailSender, "khach@gmail.com"),
@@ -60,20 +60,17 @@ internal class Program
             (emailSender, "admin@company.com"),
         };
 
-        Console.WriteLine("--- Gửi thông báo đơn hàng #1002 ---\n");
+        Console.WriteLine("--- Sending order notification #1002 ---\n");
         foreach (var (sender, recipient) in channels)
         {
-            sender.Send(recipient, "Đơn hàng #1002 đã được xác nhận.");
+            sender.Send(recipient, "Order #1002 has been confirmed.");
             Console.WriteLine();
         }
-        //foreach (var channel in channels) {
-        //    channel.sender.Send(channel.recipient, "Đơn hàng #1003 đã được xác nhận.");
-        //    Console.WriteLine();
-        //}
-        Console.WriteLine("✅ Lợi ích:");
-        Console.WriteLine("   - Client chỉ gọi Send() — không cần biết loại service bên trong.");
-        Console.WriteLine("   - Dễ dàng xử lý chung nhiều kênh trong một vòng lặp.");
-        Console.WriteLine("   - Thêm kênh mới chỉ cần tạo Adapter mới, không sửa code client.");
+
+        Console.WriteLine("✅ Benefits:");
+        Console.WriteLine("   - The client only calls Send() — it doesn't need to know the underlying service type.");
+        Console.WriteLine("   - Easily handle multiple channels in a single loop.");
+        Console.WriteLine("   - Adding a new channel only requires creating a new Adapter; no client code changes.");
     }
 }
 

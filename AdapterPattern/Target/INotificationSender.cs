@@ -1,8 +1,8 @@
 namespace AdapterPattern.Target;
 
 /// <summary>
-/// TARGET INTERFACE — Giao diện chuẩn mà client sử dụng.
-/// Client chỉ cần biết interface này, không cần biết cách gửi thực tế.
+/// TARGET INTERFACE — The standard interface the client uses.
+/// The client only needs to know this interface and not how sending is implemented.
 /// </summary>
 public interface INotificationSender
 {

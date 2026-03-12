@@ -4,8 +4,8 @@ using AdapterPattern.Target;
 namespace AdapterPattern.Adapters;
 
 /// <summary>
-/// ADAPTER 2 — Bọc SmsService vào INotificationSender.
-/// Dịch lệnh Send(recipient, message) → SendTextMessage(phoneNumber, text).
+/// ADAPTER 2 — Wraps SmsService into INotificationSender.
+/// Translates Send(recipient, message) → SendTextMessage(phoneNumber, text).
 /// </summary>
 public class SmsAdapter : INotificationSender
 {
@@ -18,7 +18,7 @@ public class SmsAdapter : INotificationSender
 
     public void Send(string recipient, string message)
     {
-        // Chuyển đổi: interface chuẩn → API của SmsService
+        // Convert: standard interface → SmsService API
         _smsService.SendTextMessage(
             phoneNumber: recipient,
             text: message
