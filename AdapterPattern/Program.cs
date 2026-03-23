@@ -10,9 +10,6 @@ internal class Program
     {
         Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-        // ╔════════════════════════════════════════════════════╗
-        // ║      PART 1: WITHOUT USING ADAPTER PATTERN         ║
-        // ╚════════════════════════════════════════════════════╝
         Console.WriteLine("╔════════════════════════════════════════════════════╗");
         Console.WriteLine("║      WITHOUT USING ADAPTER PATTERN                 ║");
         Console.WriteLine("╚════════════════════════════════════════════════════╝");
@@ -39,9 +36,6 @@ internal class Program
 
         Console.WriteLine("\n");
 
-        // ╔════════════════════════════════════════════════════╗
-        // ║      PART 2: USING ADAPTER PATTERN                 ║
-        // ╚════════════════════════════════════════════════════╝
         Console.WriteLine("╔════════════════════════════════════════════════════╗");
         Console.WriteLine("║      USING ADAPTER PATTERN                         ║");
         Console.WriteLine("╚════════════════════════════════════════════════════╝");

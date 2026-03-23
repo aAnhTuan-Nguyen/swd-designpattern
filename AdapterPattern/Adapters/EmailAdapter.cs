@@ -25,4 +25,14 @@ public class EmailAdapter : INotificationSender
             body: message
         );
     }
+
+    //public void Send(string recipient, string message)
+    //{
+    //    // Convert: standard interface → EmailService API
+    //    _emailService.SendEmail(
+    //        toAddress: recipient,
+    //        subject: "System Notification",
+    //        body: message
+    //    );
+    //}
 }

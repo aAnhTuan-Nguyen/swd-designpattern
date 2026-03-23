@@ -9,22 +9,17 @@ internal class Program
     {
         Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-        // Initialize subsystems
         var tv = new Television();
         var sound = new SoundSystem();
         var player = new StreamingPlayer();
         var lights = new RoomLights();
 
-        // ╔════════════════════════════════════════════════════╗
-        // ║       PART 1: WITHOUT USING FACADE PATTERN         ║
-        // ╚════════════════════════════════════════════════════╝
         Console.WriteLine("╔════════════════════════════════════════════════════╗");
         Console.WriteLine("║       WITHOUT USING FACADE PATTERN                 ║");
         Console.WriteLine("╚════════════════════════════════════════════════════╝");
         Console.WriteLine();
         Console.WriteLine("The client must manually call each device:");
 
-        // Start movie — the client must know every detailed step
         Console.WriteLine("\n--- Start watching movie (manual) ---\n");
         lights.Dim(10);
         tv.TurnOn();
@@ -36,7 +31,7 @@ internal class Program
         player.TurnOn();
         player.Play("Avengers: Endgame");
 
-        // End movie — the client must also turn off each device manually
+        // End movie 
         Console.WriteLine("\n--- End watching movie (manual) ---\n");
         player.Stop();
         player.TurnOff();
@@ -46,9 +41,6 @@ internal class Program
 
         Console.WriteLine("\n");
 
-        // ╔════════════════════════════════════════════════════╗
-        // ║       PART 2: USING FACADE PATTERN                 ║
-        // ╚════════════════════════════════════════════════════╝
         Console.WriteLine("╔════════════════════════════════════════════════════╗");
         Console.WriteLine("║       USING FACADE PATTERN                         ║");
         Console.WriteLine("╚════════════════════════════════════════════════════╝");

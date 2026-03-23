@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="AdapterPattern/AdapterPattern.csproj" Id="8af80396-55a7-4384-ae90-962cf525ba9c" />
   <Project Path="FacadePattern/FacadePattern.csproj" />
+  <Project Path="SingletonPattern/SingletonPattern.csproj" Id="577c55b1-5285-4498-80f6-0ddd399c5ce7" />
 </Solution>

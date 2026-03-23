@@ -150,6 +150,58 @@ homeTheater.EndMovie();                         // ← Một lệnh duy nhất!
 └──────┘ └────────┘ └────────┘ └────────┘
 ```
 
+### 🧩 Class Diagram (Mermaid)
+
+```mermaid
+classDiagram
+    class Program {
+        +Main()
+    }
+
+    class HomeTheaterFacade {
+        -Television tv
+        -SoundSystem sound
+        -StreamingPlayer player
+        -RoomLights lights
+        +HomeTheaterFacade(tv, sound, player, lights)
+        +WatchMovie(movie: string)
+        +EndMovie()
+    }
+
+    class Television {
+        +TurnOn()
+        +TurnOff()
+        +SetInput(input: string)
+        +SetBrightness(level: int)
+    }
+
+    class SoundSystem {
+        +TurnOn()
+        +TurnOff()
+        +SetVolume(level: int)
+        +SetSurroundMode()
+    }
+
+    class StreamingPlayer {
+        +TurnOn()
+        +TurnOff()
+        +Play(movie: string)
+        +Stop()
+    }
+
+    class RoomLights {
+        +TurnOn()
+        +TurnOff()
+        +Dim(level: int)
+    }
+
+    Program --> HomeTheaterFacade : Uses
+    HomeTheaterFacade --> Television : Controls
+    HomeTheaterFacade --> SoundSystem : Controls
+    HomeTheaterFacade --> StreamingPlayer : Controls
+    HomeTheaterFacade --> RoomLights : Controls
+```
+
 ---
 
 ## 💡 Lưu ý quan trọng
